@@ -13,14 +13,11 @@ import org.springframework.web.multipart.MultipartFile
 class UploadController : LoggingAware {
 
     @CrossOrigin
-    @PostMapping(value = ["/api/files/{waittime}"])
+    @PostMapping(value = ["/api/files"])
     @ResponseStatus(HttpStatus.OK)
     fun handleFileUpload(
-            @RequestParam("file")file: MultipartFile,
-            @PathVariable("waittime") waitTime: Long
+            @RequestParam("file")file: MultipartFile
     ) {
-        logger().info("Received request for file: ${file.originalFilename} with timeout: $waitTime ms")
-        Thread.sleep(waitTime)
-        logger().info("Timeout done for timeout: $waitTime ms...")
+        logger().info("Received request for file: ${file.originalFilename}")
     }
 }
